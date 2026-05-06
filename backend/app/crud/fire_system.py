@@ -21,3 +21,9 @@ def get_fire_system(db: Session):
 def get_fire_system_by_id(db: Session, fire_system_id: int):
     return db.query(FireSystem).filter(FireSystem.id == fire_system_id).first()
 
+def delete_fire_system(db: Session, fire_system_id: int):
+    fire_system = db.query(FireSystem).filter(FireSystem.id == fire_system_id).first()
+    if fire_system:
+        db.delete(fire_system)
+        db.commit()
+    return fire_system
